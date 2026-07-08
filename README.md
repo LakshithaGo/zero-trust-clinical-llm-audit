@@ -34,4 +34,4 @@ The audit architecture treats an LLM-generated clinical summary as a target arti
 
 The workflow converts a registry-style record into a structured summary artifact containing summary text, atomic claims, declared source fields, evidence snippets, missingness notes, and preliminary routing metadata. This design shifts evaluation away from paragraph-level fluency toward claim-level checks of traceability, evidence consistency, and deployment risk. 
 
-
+![Figure 1](zero_trust_architecture.png.png)
