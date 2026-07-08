@@ -6,7 +6,7 @@ This public version uses synthetic and abstracted registry-style examples. It do
 
 ## Table of contents 
 - [Summary](#summary)
-- [Case setting and deployment risk](#Case-setting-and-deployment-risk)
+- [Case setting and deployment risk](#Case setting and deployment risk)
 - [Zero-trust audit pipeline](#Zero-trust-audit-pipeline)
     - [Methodology](#Methodology)
 - [Synthetic demonstration and failure-mode taxonomy](#Synthetic-demonstration-and-failure-mode-taxonomy)
@@ -35,3 +35,24 @@ The audit architecture treats an LLM-generated clinical summary as a target arti
 The workflow converts a registry-style record into a structured summary artifact containing summary text, atomic claims, declared source fields, evidence snippets, missingness notes, and preliminary routing metadata. This design shifts evaluation away from paragraph-level fluency toward claim-level checks of traceability, evidence consistency, and deployment risk. 
 
 ![Figure 1](zero_trust_architecture.png.png)
+
+## Methodology
+
+This public case study uses synthetic and abstracted registry-style records based on constraints observed in internal clinical-registry audit work. The examples were recreated to preserve the methodological structure of the original problem- fragmented fields, narrative text, metadata, and missingness- without disclosing patient-level data, institutional identifiers, real clinical text, or unapproved results. The prototype was implemented in Python: generated summaries were structured into atomic claims, evidence snippets, source fields, missingness notes, and routing metadata, then passed through schema checks, source-attribution matching, semantic risk labeling, and rule-based gate assignment. Aggregate audit logs were produced internally, but exact cohort sizes, case counts, and run-level metrics are omitted from this public version pending data-owner approval.
+
+The first audit layer is schema validation. This layer verifies whether the generated artifact is complete, parseable, and structurally compatible with downstream review. A schema-valid output is not treated as clinically correct; it is only considered structurally auditable. Malformed, incomplete, or unparsable outputs are halted because later interpretation would be unreliable.
+
+The second audit layer is source-attribution validation. This layer evaluates whether each declared evidence snippet can be traced to the claimed source section using normalized matching procedures such as lowercasing, whitespace normalization, punctuation handling, and token-sequence comparison. The purpose is to detect provenance failures such as missing evidence, source-section mismatch, or quote stitching. A claim may be directionally plausible, but if its evidence trail cannot be verified, the artifact is not ready for unreviewed workflow exposure.
+
+The third audit layer is semantic risk review. This layer does not function as an automated clinical truth oracle. Instead, it assigns claim-level risk labels based on whether each atomic claim appears supported, partially supported, unsupported, contradicted, or insufficiently evidenced. It also flags reasoning patterns that deterministic attribution checks may miss, such as unsupported comparisons, missing comparator data, critical omissions, automation overreach, and checklist over-reliance. 
+These labels are treated as governance signals rather than final clinical adjudications.
+
+The final layer is governance routing. The gate converts audit findings into one of three routing decisions: ALLOW, HUMAN REVIEW, or HALT. Outputs with no detected blockers may be retained only as limited summary-support artifacts. Outputs with partial support, unverifiable attribution, unsupported comparisons, critical uncertainty, or missingness-related ambiguity are routed to human review. Outputs with malformed structure, privacy leakage, or severe contradicted claims are stopped before downstream exposure. The gate determines whether a generated summary can be viewed as a constrained support artifact, requires human mitigation, or must be blocked entirely.
+
+## Synthetic demonstration and failure-mode taxonomy
+
+The synthetic demonstration was designed to stress the audit method under registry-style conditions rather than to estimate model performance. The recreated records varied source completeness, missingness patterns, and prompting context so that the same audit pipeline could be examined under different traceability conditions. Prompt settings ranged from minimally constrained summarization to audit-aware and workflow-oriented instructions.
+
+## Table 1
+
+
