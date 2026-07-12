@@ -78,4 +78,17 @@ The primary contribution is methodological: generated clinical summaries are tre
 
 This public version has important limitations. It is a synthetic methodological case study, not a clinical validation study, performance benchmark, or autonomous clinical decision-support system. The semantic labels should be interpreted as governance signals rather than final clinical adjudications. Future work would require approved clinical data access, clinician review, larger run logs, and reliability testing before the pipeline could be evaluated as a deployable clinical safety system.
 
+## Not Included
+
+This public repository does not include:
+- patient-level data
+- real clinical text
+- MRNs, account numbers, or crosswalk files
+- institutional identifiers
+- internal cohort counts
+- private prompts
+- model API keys
+- unapproved audit logs
+- generated outputs from restricted records
+
 
