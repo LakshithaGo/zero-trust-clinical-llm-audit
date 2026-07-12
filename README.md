@@ -91,4 +91,22 @@ This public repository does not include:
 - unapproved audit logs
 - generated outputs from restricted records
 
+__pycache__/
+*.pyc
+.env
+.env.*
+*.ipynb_checkpoints/
 
+# Never commit real or internal data
+*.xlsx
+*.xls
+*.csv
+*.jsonl
+
+# Internal outputs
+generation_outputs*
+deterministic_validation*
+manual_generator_prompts*
+secure_*crosswalk*
+llm_ready*
+pilot_5_records*
