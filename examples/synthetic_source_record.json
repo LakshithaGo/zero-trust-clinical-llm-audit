@@ -1,0 +1,20 @@
+{
+  "STRUCTURED_FIELDS": {
+    "registry_context": "Synthetic registry-style source record",
+    "derived_acuity_field": "MODERATE",
+    "length_of_stay": "3.0 days",
+    "contextual_vulnerability_field": "Recorded, but no comparator distribution provided",
+    "transition_support_documented": "YES",
+    "record_completeness_flag": "TEXT_AVAILABLE_STRUCTURED_FIELDS_MISSING",
+    "source_text_word_count": "42"
+  },
+  "NARRATIVE_FRAGMENT": "The synthetic record contains fragmented documentation across structured fields and narrative notes. Some structured comparator fields are unavailable.",
+  "SOURCE_TEXT": "The source record states that transition support was documented. The record does not provide cohort median, baseline, or comparator data. Several registry fields are incomplete.",
+  "AUDIT_METADATA": "This is a synthetic public demo record. Comparator data are unavailable. Missingness must be acknowledged before any summary is used downstream.",
+  "TRANSITION_METADATA": "Transition support was documented as YES. Administrative completion does not override missing comparator data or incomplete source fields.",
+  "MISSINGNESS_NOTES": [
+    "Comparator data are not available.",
+    "Cohort median is not provided.",
+    "Several structured registry fields are incomplete."
+  ]
+}
